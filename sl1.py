@@ -1,0 +1,4 @@
+import streamlit as slt
+slt.header('Memorias de la patagonia austral koluel')
+slt.subheader('por gustavo navarro')
+slt.write('En el año 2010 se crea el proyecto Memorias de la Patagonia Austral que comienza a reubicar y organizar conjuntos de documentos a partir de la digitalización y el específico tratamiento de los mismos para su puesta en consulta pública.  El Repositorio cuenta con material documental de la primera mitad del siglo XX de las localidades de la región sur patagónica, a fin de materializar su disponibilidad para uso en el ámbito académico, en el sistema educativo y en la comunidad en general. La construcción del mismo se lleva adelante por el trabajo colaborativo entre  la Universidad Nacional de la Patagonia Austral, Bibliotecas y Archivos.')
