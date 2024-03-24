@@ -1,1 +1,1 @@
-from textblob import TextBlob
+TextBlob
