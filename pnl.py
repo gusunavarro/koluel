@@ -13,6 +13,7 @@ nltk.download('vader_lexicon')
 # Inicializar el analizador de sentimientos de NLTK
 sia = SentimentIntensityAnalyzer()
 
+
 # Función para analizar sentimientos con NLTK
 def analyze_sentiment_nltk(text):
     # Calcular la polaridad de sentimiento con NLTK
@@ -24,6 +25,7 @@ def analyze_sentiment_nltk(text):
     subjectivity = 1 - objectivity
     return polarity, subjectivity, objectivity
 
+
 # Función para obtener texto de una URL
 def get_text_from_url(url):
     try:
@@ -34,11 +36,17 @@ def get_text_from_url(url):
     except Exception as e:
         return str(e)
 
+
 # Función para obtener el nombre del dominio de una URL
 def get_domain_name(url):
     parsed_url = urlparse(url)
     domain = parsed_url.netloc
-    return domain
+    if domain.startswith("www."):
+        return domain.split('.')[1]  # Devuelve solo el primer segmento del dominio
+    else:
+        return domain  # Devuelve el dominio completo
+
+
 
 # Interfaz de usuario con Streamlit
 st.title("Análisis de Sentimientos en Español")
@@ -57,6 +65,21 @@ if option == "Texto":
             st.write("Polaridad:", polarity)
             st.write("Subjetividad:", subjectivity)
             st.write("Objetividad:", objectivity)
+
+            # Crear un DataFrame con los resultados
+            df_resultados_texto = pd.DataFrame({
+                "Archivo": ["Texto Ingresado"],
+                "Polaridad": [polarity],
+                "Subjetividad": [subjectivity],
+                "Objetividad": [objectivity]
+            })
+
+            # Gráfico de barras para los resultados del texto ingresado
+            fig, ax = plt.subplots(figsize=(6, 4))
+            df_resultados_texto.plot(kind='bar', x='Archivo', ax=ax)
+            ax.set_ylabel("Valor")
+            ax.set_title("Análisis de Sentimientos del Texto Ingresado")
+            st.pyplot(fig)
 
 elif option == "Cargar Archivos":
     # Opción para subir múltiples archivos
@@ -116,17 +139,13 @@ elif option == "URLs":
         if resultados_urls:
             # Visualización de resultados de las URLs en formato de tabla
             df_resultados_urls = pd.DataFrame(resultados_urls,
-                                               columns=["URL", "Polaridad", "Subjetividad", "Objetividad"])
+                                              columns=["Dominio", "Polaridad", "Subjetividad", "Objetividad"])
             st.write(df_resultados_urls)
 
             # Gráfico de barras para comparar los resultados
             fig, ax = plt.subplots(figsize=(10, 6))
-            df_resultados_urls.plot(kind='bar', x='URL', ax=ax)
+            df_resultados_urls.plot(kind='bar', x='Dominio', ax=ax)
             ax.set_ylabel("Valor")
             ax.set_title("Análisis de Sentimientos de las URLs")
             st.pyplot(fig)
-
-
-
-
 
