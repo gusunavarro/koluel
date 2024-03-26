@@ -49,7 +49,7 @@ def get_domain_name(url):
 
 
 # Interfaz de usuario con Streamlit
-st.title("Análisis de Sentimientos en Español")
+st.title("Análisis de Sentimientos")
 
 # Opción para ingresar texto, cargar archivos o ingresar una lista de URL
 option = st.radio("Seleccione una opción:", ("Texto", "Cargar Archivos", "URLs"))
