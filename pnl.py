@@ -83,8 +83,8 @@ if option == "Texto":
 
 elif option == "Cargar Archivos":
     # Opción para subir múltiples archivos
-    archivos = st.file_uploader("Cargar archivos (.txt, .doc, .docx, .pdf, .csv)",
-                                type=["txt", "doc", "docx", "pdf", "csv"], accept_multiple_files=True)
+    archivos = st.file_uploader("Cargar archivos (.txt, .csv)",
+                                type=["txt", "csv"], accept_multiple_files=True)
 
     if st.button("Analizar Archivos"):
         if archivos:
