@@ -148,4 +148,3 @@ elif option == "URLs":
             ax.set_ylabel("Valor")
             ax.set_title("Análisis de Sentimientos de las URLs")
             st.pyplot(fig)
-
