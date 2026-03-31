@@ -1,3 +1,7 @@
-TextBlob
+streamlit
+nltk
 matplotlib
-textract
+pandas
+requests
+beautifulsoup4
+PyPDF2
